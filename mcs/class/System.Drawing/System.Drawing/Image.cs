@@ -98,7 +98,7 @@ public abstract class Image : MarshalByRefObject, IDisposable , ICloneable, ISer
 	// static
 	public static Image FromFile(string filename)
 	{
-		return FromFile (filename, false);
+		return FromFile (filename.Replace('\\','/'), false);
 	}
 	
 	public static Image FromFile(string filename, bool useEmbeddedColorManagement)

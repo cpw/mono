@@ -517,8 +517,11 @@ namespace System.Windows.Forms
 				if (value < -1 || value >= Items.Count)
 					throw new ArgumentOutOfRangeException ("Index of out range");
 
-				if (SelectionMode == SelectionMode.None)
-					throw new ArgumentException ("cannot call this method if SelectionMode is SelectionMode.None");
+				if (SelectionMode == SelectionMode.None) {
+					selected_indices.Clear ();
+					return;
+					//throw new ArgumentException ("cannot call this method if SelectionMode is SelectionMode.None");
+				}
 
 				if (value == -1)
 					selected_indices.Clear ();

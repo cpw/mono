@@ -360,9 +360,14 @@ namespace System.Windows.Forms
 		}
 
 		public virtual Font DefaultFont {
-			get { return default_font ?? (default_font = SystemFonts.DefaultFont); }
+			get { return default_font ?? (default_font = GetDefaultFont()); }
 		}
 
+		private static Font GetDefaultFont() {
+			return new Font(Environment.GetEnvironmentVariable("FONT_NAME") ?? "Nimbus Sans",
+			float.Parse(Environment.GetEnvironmentVariable("FONT_SIZE") ?? "8"),
+			(FontStyle)Enum.Parse(typeof(FontStyle), Environment.GetEnvironmentVariable("FONT_STYLE") ?? "Regular"));
+		}
 		public virtual Color DefaultWindowBackColor {
 			get { return defaultWindowBackColor; }
 		}
@@ -506,7 +511,7 @@ namespace System.Windows.Forms
 
 		public virtual Font MenuFont {
 			get {
-				return default_font ?? (default_font = SystemFonts.DefaultFont);
+				return default_font ?? (default_font = GetDefaultFont());
 			}
 		}
 

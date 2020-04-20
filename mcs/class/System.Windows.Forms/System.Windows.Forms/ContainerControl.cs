@@ -348,6 +348,9 @@ namespace System.Windows.Forms {
 
 		protected SizeF AutoScaleFactor {
 			get {
+				if (Environment.GetEnvironmentVariable("SCALEHACKX")!=null) {
+					return new SizeF(float.Parse(Environment.GetEnvironmentVariable("SCALEHACKX")), float.Parse(Environment.GetEnvironmentVariable("SCALEHACKY")??"1"));
+				}
 				if (auto_scale_dimensions.IsEmpty)
 					return new SizeF (1f, 1f);
 
